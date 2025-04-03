@@ -74,12 +74,39 @@ export default function Dashboard() {
     alertCount: 1
   };
   
-  // Generate more dynamic data for chart with slight variations for realistic data
-  const generateDataPoints = (baseValues: number[], variance: number = 0.1) => {
-    return baseValues.map(value => {
-      const varianceAmount = value * variance;
-      return value + getRandomValue(-varianceAmount, varianceAmount);
-    });
+  // Generate more dynamic data for chart with natural variations for realistic data
+  const generateDataPoints = (baseValues: number[], pattern: string = 'natural') => {
+    if (pattern === 'natural') {
+      // Create more natural-looking data with occasional dips and spikes
+      return baseValues.map((value, index) => {
+        // Base value with slight noise (±5%)
+        let newValue = value * (1 + (Math.random() * 0.1 - 0.05));
+        
+        // Add occasional significant variations (spikes or dips)
+        if (Math.random() > 0.7) {
+          // 30% chance of a significant variation
+          const multiplier = Math.random() > 0.5 ? 
+            1 + Math.random() * 0.25 :  // spike up to +25%
+            1 - Math.random() * 0.20;   // dip up to -20%
+          newValue *= multiplier;
+        }
+        
+        // Occasional plateau (similar to previous value)
+        if (index > 0 && Math.random() > 0.8) {
+          // 20% chance to be similar to previous value
+          const prevValue = baseValues[index-1];
+          newValue = prevValue * (1 + (Math.random() * 0.03 - 0.015));
+        }
+        
+        return Math.round(newValue);
+      });
+    } else {
+      // Simple random variation
+      return baseValues.map(value => {
+        const variance = value * 0.15; // 15% variance
+        return Math.round(value + getRandomValue(-variance, variance));
+      });
+    }
   };
   
   // Historical data for trend chart with more realistic data patterns
@@ -549,9 +576,9 @@ export default function Dashboard() {
       </div>
       
       {/* Smart Summary Box */}
-      <div className="bg-green-50 border border-green-100 rounded-lg p-4 mx-6">
+      <div className="bg-white border border-gray-200 rounded-lg p-4 mx-6 shadow-sm">
         <div className="flex items-start">
-          <Lightbulb className="h-5 w-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
+          <Lightbulb className="h-5 w-5 text-gray-600 mt-0.5 mr-3 flex-shrink-0" />
           <p className="text-sm text-gray-700">
             <span className="font-medium">AI Summary:</span> Fleet AI optimized {efficiencyMetrics.routesOptimized} routes this week, 
             saving {efficiencyMetrics.timeSaved} hrs and reducing {formatNumber(efficiencyMetrics.co2Reduced)} kg CO₂. 
@@ -662,7 +689,7 @@ export default function Dashboard() {
             </div>
             
             <div className="p-4 border-t border-gray-100 bg-gray-50 flex justify-between items-center">
-              <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 flex items-center">
+              <Badge variant="outline" className="bg-gray-100 text-gray-700 border-gray-200 flex items-center">
                 <Flag className="h-3.5 w-3.5 mr-1.5" />
                 Milestone Indicators
               </Badge>
@@ -775,7 +802,7 @@ export default function Dashboard() {
                   Manage Alerts
                 </Button>
                 <Link href="/alerts">
-                  <Button variant="outline" size="sm" className="text-xs h-8 bg-green-50 border-green-200 text-green-700 hover:bg-green-100">
+                  <Button variant="outline" size="sm" className="text-xs h-8 bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-200">
                     View All Alerts
                   </Button>
                 </Link>
@@ -816,13 +843,13 @@ export default function Dashboard() {
                 <span className="font-medium text-green-600">{carbonCredits.goalPercentage}%</span>
               </div>
               <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-                <div className="bg-green-500 h-full rounded-full" style={{ width: `${carbonCredits.goalPercentage}%` }}></div>
+                <div className="bg-gray-500 h-full rounded-full" style={{ width: `${carbonCredits.goalPercentage}%` }}></div>
               </div>
             </div>
           </CardContent>
           <CardFooter className="px-5 pt-0 pb-5">
             <Link href="/carbon-tracking" className="w-full">
-              <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+              <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white">
                 View Carbon Credits
               </Button>
             </Link>
@@ -866,7 +893,7 @@ export default function Dashboard() {
           </CardContent>
           <CardFooter className="px-5 pt-0 pb-5">
             <Link href="/recycling-marketplace" className="w-full">
-              <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+              <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white">
                 View Marketplace
               </Button>
             </Link>
@@ -902,13 +929,13 @@ export default function Dashboard() {
                 <span className="font-medium text-green-600">{citizenStats.communityEngagement}%</span>
               </div>
               <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-                <div className="bg-green-500 h-full rounded-full" style={{ width: `${citizenStats.communityEngagement}%` }}></div>
+                <div className="bg-gray-500 h-full rounded-full" style={{ width: `${citizenStats.communityEngagement}%` }}></div>
               </div>
             </div>
           </CardContent>
           <CardFooter className="px-5 pt-0 pb-5">
             <Link href="/citizen-engagement" className="w-full">
-              <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+              <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white">
                 View Reports
               </Button>
             </Link>
@@ -1013,7 +1040,7 @@ export default function Dashboard() {
             <div className="text-sm text-gray-600">
               <span className="font-medium">25</span> Total Vehicles in Fleet
             </div>
-            <Button variant="outline" size="sm" className="h-8 bg-green-50 border-green-200 text-green-700 hover:bg-green-100">
+            <Button variant="outline" size="sm" className="h-8 bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-200">
               <Calendar className="h-3.5 w-3.5 mr-1.5" />
               Schedule Optimization
             </Button>
