@@ -1,7 +1,7 @@
 import { Route, Switch } from "wouter";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import Dashboard from "@/pages/dashboard";
-import RouteMap from "@/pages/route-map";
+import RouteMapPage from "@/pages/route-map";
 import Reports from "@/pages/reports";
 import Alerts from "@/pages/alerts";
 import Performance from "@/pages/performance";
@@ -15,7 +15,7 @@ function App() {
     <DashboardLayout>
       <Switch>
         <Route path="/" component={Dashboard} />
-        <Route path="/route-map" component={RouteMap} />
+        <Route path="/route-map" component={RouteMapPage} />
         <Route path="/reports" component={Reports} />
         <Route path="/alerts" component={Alerts} />
         <Route path="/performance" component={Performance} />

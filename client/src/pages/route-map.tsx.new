@@ -206,12 +206,8 @@ export default function RouteMapPage() {
               </Select>
             </div>
             
-            <Button 
-              className="w-full bg-gray-600 hover:bg-gray-700 text-white" 
-              onClick={() => handleOptimizeClick()}
-              disabled={isLoading}
-            >
-              {isLoading ? 'Optimizing...' : 'Optimize Routes'}
+            <Button className="w-full bg-gray-600 hover:bg-gray-700" onClick={() => handleOptimizeClick()}>
+              Optimize Routes
             </Button>
             
             <div className="p-4 bg-blue-50 rounded-lg border border-blue-100 mt-4">
@@ -276,7 +272,7 @@ export default function RouteMapPage() {
                 </div>
                 
                 <div className="mt-3 flex space-x-2">
-                  <Button className="flex-1 h-8 text-xs bg-gray-600 hover:bg-gray-700 text-white">View Details</Button>
+                  <Button className="flex-1 h-8 text-xs bg-gray-600 hover:bg-gray-700">View Details</Button>
                   <Button variant="outline" className="flex-1 h-8 text-xs">Edit Route</Button>
                 </div>
               </CardContent>
@@ -317,7 +313,7 @@ export default function RouteMapPage() {
                 </div>
                 
                 <div className="mt-3 flex space-x-2">
-                  <Button className="flex-1 h-8 text-xs bg-gray-600 hover:bg-gray-700 text-white">View Details</Button>
+                  <Button className="flex-1 h-8 text-xs bg-gray-600 hover:bg-gray-700">View Details</Button>
                   <Button variant="outline" className="flex-1 h-8 text-xs">Edit Route</Button>
                 </div>
               </CardContent>
@@ -358,7 +354,7 @@ export default function RouteMapPage() {
                 </div>
                 
                 <div className="mt-3 flex space-x-2">
-                  <Button className="flex-1 h-8 text-xs bg-gray-600 hover:bg-gray-700 text-white">View Details</Button>
+                  <Button className="flex-1 h-8 text-xs bg-gray-600 hover:bg-gray-700">View Details</Button>
                   <Button variant="outline" className="flex-1 h-8 text-xs">Edit Route</Button>
                 </div>
               </CardContent>
