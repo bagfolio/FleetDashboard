@@ -7,6 +7,7 @@ import Alerts from "@/pages/alerts";
 import Performance from "@/pages/performance";
 import CarbonTracking from "@/pages/carbon-tracking";
 import CitizenEngagement from "@/pages/citizen-engagement";
+import RecyclingMarketplace from "@/pages/recycling-marketplace";
 import NotFound from "@/pages/not-found";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/performance" component={Performance} />
         <Route path="/carbon-tracking" component={CarbonTracking} />
         <Route path="/citizen-engagement" component={CitizenEngagement} />
+        <Route path="/recycling-marketplace" component={RecyclingMarketplace} />
         <Route component={NotFound} />
       </Switch>
     </DashboardLayout>

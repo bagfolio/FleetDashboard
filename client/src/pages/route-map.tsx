@@ -1,25 +1,287 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Map } from "lucide-react";
-import MapView from "@/components/dashboard/MapView";
+import { 
+  Map, 
+  ChevronDown, 
+  ArrowUp, 
+  Truck, 
+  Clock, 
+  Zap,
+  LayoutDashboard,
+  Calendar,
+  RefreshCw
+} from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function RouteMap() {
+  const [zone, setZone] = useState("North District");
+  const [date, setDate] = useState("Today");
+  const [priority, setPriority] = useState("Balanced");
+  
+  // Sample optimization results
+  const optimizationResults = {
+    distanceSaved: 18.4,
+    fuelSaved: 8.2,
+    timeSaved: 47,
+    co2Reduced: 36.8
+  };
+  
   return (
     <>
-      <div className="mb-6 flex flex-wrap items-center justify-between">
-        <div>
-          <h2 className="text-lg font-semibold text-neutral-800">Route Map</h2>
-          <p className="text-sm text-neutral-500">
-            Interactive map with real-time vehicle locations and route tracking
-          </p>
-        </div>
-        <Button>
-          <Map className="mr-2 h-4 w-4" />
-          Create New Route
-        </Button>
+      <div className="mb-6">
+        <h1 className="text-xl font-semibold text-gray-800 mb-2">Route Optimization</h1>
+        <p className="text-sm text-gray-500">AI-powered route planning based on historical data, traffic patterns, and weather conditions</p>
       </div>
       
-      <MapView />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div className="md:col-span-2 card-section">
+          <div className="card-header">
+            <h3>Route Map</h3>
+            <Button variant="outline" className="text-xs h-7 bg-green-50 border-green-200 text-green-700 hover:bg-green-100">
+              <RefreshCw className="h-3 w-3 mr-1" />
+              Refresh
+            </Button>
+          </div>
+          
+          <div className="bg-gray-100 h-96 rounded-md flex items-center justify-center">
+            {/* In a real app, this would be an actual map with routes */}
+            <div className="text-center">
+              <Map className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+              <p className="text-gray-600 font-medium">Route Optimization Map</p>
+              <p className="text-gray-400 text-sm">Select a zone and date to view optimized routes</p>
+            </div>
+          </div>
+          
+          {/* Results Summary */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 mt-2 bg-green-50 rounded-lg border border-green-100">
+            <div>
+              <p className="text-xs text-gray-500">Distance Saved</p>
+              <p className="text-xl font-bold text-green-700">{optimizationResults.distanceSaved} <span className="text-sm font-normal">mi</span></p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500">Fuel Saved</p>
+              <p className="text-xl font-bold text-green-700">{optimizationResults.fuelSaved} <span className="text-sm font-normal">gal</span></p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500">Time Saved</p>
+              <p className="text-xl font-bold text-green-700">{optimizationResults.timeSaved} <span className="text-sm font-normal">min</span></p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500">CO₂ Reduced</p>
+              <p className="text-xl font-bold text-green-700">{optimizationResults.co2Reduced} <span className="text-sm font-normal">kg</span></p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="card-section">
+          <div className="card-header">
+            <h3>Optimization Controls</h3>
+          </div>
+          
+          <div className="space-y-5 p-4">
+            <div>
+              <Label className="text-sm font-medium text-gray-700 mb-2 block">Collection Zone</Label>
+              <Select value={zone} onValueChange={setZone}>
+                <SelectTrigger className="bg-gray-50 border border-gray-200">
+                  <SelectValue placeholder="Select a zone" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="North District">North District</SelectItem>
+                  <SelectItem value="South District">South District</SelectItem>
+                  <SelectItem value="East District">East District</SelectItem>
+                  <SelectItem value="West District">West District</SelectItem>
+                  <SelectItem value="Central District">Central District</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div>
+              <Label className="text-sm font-medium text-gray-700 mb-2 block">Collection Date</Label>
+              <Select value={date} onValueChange={setDate}>
+                <SelectTrigger className="bg-gray-50 border border-gray-200">
+                  <SelectValue placeholder="Select a date" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Today">Today</SelectItem>
+                  <SelectItem value="Tomorrow">Tomorrow</SelectItem>
+                  <SelectItem value="Next Week">Next Week</SelectItem>
+                  <SelectItem value="Custom">Custom Date</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div>
+              <Label className="text-sm font-medium text-gray-700 mb-2 block">Optimization Priority</Label>
+              <Select value={priority} onValueChange={setPriority}>
+                <SelectTrigger className="bg-gray-50 border border-gray-200">
+                  <SelectValue placeholder="Select priority" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Fuel Efficient">Fuel Efficient</SelectItem>
+                  <SelectItem value="Time Efficient">Time Efficient</SelectItem>
+                  <SelectItem value="Balanced">Balanced</SelectItem>
+                  <SelectItem value="Carbon Reduction">Carbon Reduction</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <Button className="w-full btn-green">Optimize Routes</Button>
+            
+            <div className="p-4 bg-blue-50 rounded-lg border border-blue-100 mt-4">
+              <div className="flex items-start mb-2">
+                <Zap className="h-5 w-5 text-blue-500 mr-2 mt-0.5" />
+                <div>
+                  <h4 className="text-sm font-medium text-blue-700">AI Optimization</h4>
+                  <p className="text-xs text-blue-600 mt-1">
+                    Our AI algorithm analyzes historical collection data, traffic patterns, vehicle capacity, and weather conditions to create the most efficient routes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Vehicle Routes Section */}
+      <div className="card-section mb-6">
+        <div className="card-header">
+          <h3>Optimized Vehicle Routes</h3>
+          <Button variant="outline" className="text-xs">
+            <Truck className="h-4 w-4 mr-1" />
+            Assign Vehicles
+          </Button>
+        </div>
+        
+        <div className="p-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Card className="border border-gray-200">
+              <div className="p-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                <div>
+                  <h4 className="font-medium text-gray-800">Route #WM-1043</h4>
+                  <p className="text-xs text-gray-500">North District - Residential</p>
+                </div>
+                <div className="p-1.5 bg-green-50 rounded-full">
+                  <Truck className="h-4 w-4 text-green-600" />
+                </div>
+              </div>
+              <CardContent className="p-3">
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Vehicle:</span>
+                    <span className="font-medium text-gray-800">WM-T18 Eco-Compactor</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Driver:</span>
+                    <span className="font-medium text-gray-800">Michael Chen</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Stops:</span>
+                    <span className="font-medium text-gray-800">38</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Distance:</span>
+                    <span className="font-medium text-gray-800">18.5 mi</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">ETA Completion:</span>
+                    <span className="font-medium text-green-600">15:45 EST</span>
+                  </div>
+                </div>
+                
+                <div className="mt-3 flex space-x-2">
+                  <Button className="flex-1 h-8 text-xs btn-green">View Details</Button>
+                  <Button variant="outline" className="flex-1 h-8 text-xs">Edit Route</Button>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="border border-gray-200">
+              <div className="p-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                <div>
+                  <h4 className="font-medium text-gray-800">Route #WM-1044</h4>
+                  <p className="text-xs text-gray-500">North District - Commercial</p>
+                </div>
+                <div className="p-1.5 bg-green-50 rounded-full">
+                  <Truck className="h-4 w-4 text-green-600" />
+                </div>
+              </div>
+              <CardContent className="p-3">
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Vehicle:</span>
+                    <span className="font-medium text-gray-800">WM-T22 Heavy Lifter</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Driver:</span>
+                    <span className="font-medium text-gray-800">Sarah Johnson</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Stops:</span>
+                    <span className="font-medium text-gray-800">22</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Distance:</span>
+                    <span className="font-medium text-gray-800">14.2 mi</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">ETA Completion:</span>
+                    <span className="font-medium text-green-600">14:30 EST</span>
+                  </div>
+                </div>
+                
+                <div className="mt-3 flex space-x-2">
+                  <Button className="flex-1 h-8 text-xs btn-green">View Details</Button>
+                  <Button variant="outline" className="flex-1 h-8 text-xs">Edit Route</Button>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="border border-gray-200">
+              <div className="p-3 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                <div>
+                  <h4 className="font-medium text-gray-800">Route #WM-1045</h4>
+                  <p className="text-xs text-gray-500">North District - Recycling</p>
+                </div>
+                <div className="p-1.5 bg-green-50 rounded-full">
+                  <Truck className="h-4 w-4 text-green-600" />
+                </div>
+              </div>
+              <CardContent className="p-3">
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Vehicle:</span>
+                    <span className="font-medium text-gray-800">WM-T15 Recycler</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Driver:</span>
+                    <span className="font-medium text-gray-800">Alex Rodriguez</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Stops:</span>
+                    <span className="font-medium text-gray-800">42</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Distance:</span>
+                    <span className="font-medium text-gray-800">22.8 mi</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">ETA Completion:</span>
+                    <span className="font-medium text-orange-500">16:15 EST</span>
+                  </div>
+                </div>
+                
+                <div className="mt-3 flex space-x-2">
+                  <Button className="flex-1 h-8 text-xs btn-green">View Details</Button>
+                  <Button variant="outline" className="flex-1 h-8 text-xs">Edit Route</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
