@@ -1,0 +1,69 @@
+Revise the main dashboard layout to make it cleaner, more modern, and more focused on high-level operational insights, clear visual hierarchy, and real-time feedback.
+
+1. HEADER
+- Keep it minimal. Logo (left), Date (center), User icon (right).
+
+2. SMART SUMMARY BOX (Below Header)
+- Add a natural-language summary box like:
+  "Fleet AI optimized 9 routes this week, saving 384 hrs and reducing 9,264 kg CO₂. 3 new AI recommendations. 1 maintenance alert."
+
+3. KPI ROW
+- Create 4 clean, white KPI cards:
+  - Fuel Saved (gal)
+  - Distance Reduced (mi)
+  - Time Saved (hrs)
+  - CO₂ Reduced (kg)
+- Each card: white background, green/blue number, small subtext (“↑ 8.7% since last month”).
+
+4. IMPACT TRENDS CHART
+- Use a modern, interactive multi-metric area or line chart.
+- Metrics: Fuel Saved, Distance Reduced, Time Saved (separate lines, distinct colors).
+- Add tooltips, filter buttons (Weekly / Monthly / Quarterly), and milestone flags (e.g. “1000 gal milestone”).
+
+5. OPERATIONAL FEED (ALERTS + INSIGHTS)
+- Create a real-time feed of alerts/insights with:
+  - White cards
+  - Colored left border bar (Red = critical, Orange = warning, Blue = insight, Green = success)
+  - Icons (e.g., 🛠, 🚛, ⛽)
+  - Brief text + "Take Action" link
+  - Filters/tabs: All | Critical | Suggestions | Completed
+
+6. LOWER METRIC MODULES (2-COLUMN CARD GRID)
+- Create modular white cards with light shadows for:
+  A. Recycling Marketplace
+     - Items listed
+     - Total value
+     - Top material + current price
+  B. Citizen Engagement
+     - Reports submitted
+     - Avg resolution time
+     - Engagement score (progress bar)
+  C. Carbon Credits
+     - Credits earned
+     - Available
+     - Market value
+     - Goal progress bar
+
+7. BOTTOM SECTION – FLEET OVERVIEW
+- Replace static cards with:
+  A. Interactive Table:
+     - Columns: Vehicle ID | Status | Route | ETA | Completion | Actions
+     - Color-coded chips (green = active, orange = delayed, blue = maintenance)
+     - Sort and filter options
+  OR
+  B. Mini Map View:
+     - Plot current fleet vehicle positions
+     - Color-coded pins based on status
+     - Click a vehicle to open a modal with live data
+
+8. STYLING GUIDE
+- Main background: white (#FFFFFF)
+- Accent color: brand green (#28A745) only for success/CTAs
+- Use soft shadows, 4–8px corner radius on cards
+- Font: Open Sans / Roboto
+- Headers: 24–32px, Body text: 14–16px
+
+9. MAKE IT RESPONSIVE
+- On mobile: stack KPI cards, stack trend chart + feed, collapsible fleet table
+
+Goal: make the dashboard feel like a live control center with clear value, clean visuals, smart insights, and interactive fleet visibility.
