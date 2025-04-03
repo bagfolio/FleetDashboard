@@ -1,0 +1,187 @@
+Build a main dashboard that serves as a high-level, digestible “command center” for an operations manager. This dashboard should summarize all critical insights driven by our AI (route efficiency, fuel/time savings, citizen engagement, recycling marketplace activity, and carbon credits) without duplicating the detailed module pages already linked on the left sidebar. Use a clean, modern design with a white background and green accent colors.
+
+1. Overall Layout & Structure
+Grid Layout:
+
+Use a responsive 12-column grid (via CSS Grid or Flexbox) for consistent spacing and alignment.
+
+Ensure responsiveness so that the layout adjusts on mobile (stack panels vertically) and on desktop (panels side-by-side).
+
+Header (Top Bar):
+
+Height: 60–80px.
+
+Content:
+
+Left: Display your logo.
+
+Center: Show current date/time.
+
+Right: Display a user profile icon.
+
+Style: Minimalistic, with white background (#FFFFFF) and subtle bottom border (light grey, e.g., #F0F0F0).
+
+Main Content Area:
+
+Divide this into two primary panels:
+
+Left Panel (≈70% width):
+
+This panel will feature a large interactive trend chart that shows key operational metrics over time.
+
+Dimensions: Approximately 600–800px wide on a typical desktop.
+
+Right Panel (≈30% width):
+
+This panel will contain a vertical stack of “Insight/Alert Cards” that display actionable notifications (e.g., alerts for missed pickups, recommended route adjustments).
+
+Each card should be around 200–250px in height.
+
+Spacing:
+
+Use consistent margins/padding (20–30px) between panels and within panels.
+
+Maintain ample white space for clarity.
+
+2. Visual Design & Color Scheme
+Color Palette:
+
+Background: White (#FFFFFF) or very light gray (#F8F9FA) for the main background.
+
+Primary Accent: Use green as the main accent color (e.g., #28A745) for buttons, chart lines, and key highlights.
+
+Secondary Colors: Use complementary muted tones (light grays, soft greens) for secondary information.
+
+Alerts: Use red (#DC3545) for critical alerts and orange (#FFC107) for warnings.
+
+Typography:
+
+Font: Use a clean sans-serif font (e.g., Roboto, Open Sans, or Helvetica).
+
+Headers: 24–32px, bold.
+
+Body Text: 14–16px regular.
+
+Labels/Small Info: 12px.
+
+Buttons & Interactive Elements:
+
+Style buttons with a flat design, rounded corners (4–8px radius), and a subtle hover effect (e.g., slight darkening).
+
+Use vector icons (e.g., Font Awesome or Material Icons) sized uniformly (16–24px).
+
+Depth & Shadows:
+
+Apply soft drop shadows to cards and panels (e.g., rgba(0,0,0,0.1) with 2px offset, 5px blur) for subtle depth.
+
+3. Detailed Components
+A. Central Trend Chart (Left Panel):
+
+Purpose: Display key trends over time (e.g., “Distance Saved,” “Fuel Savings,” “Time Efficiency”).
+
+Chart Type:
+
+Use a multi-line or area chart.
+
+Interactivity:
+
+Enable tooltips that display detailed values when hovering.
+
+Allow zoom and pan functionality for selecting specific time periods (e.g., last 7 days, last 30 days).
+
+Data Series:
+
+At least three metrics to be plotted concurrently.
+
+Implementation Tips:
+
+Use libraries like Chart.js, D3.js, or Recharts.
+
+Set the chart dimensions to fill most of the left panel.
+
+B. Insights/Alerts Cards (Right Panel):
+
+Purpose: Show actionable alerts, notifications, and recommendations.
+
+Card Details:
+
+Size: Approximately 200–250px in height each.
+
+Content:
+
+Header with a small icon (use green accent for positive alerts, red/orange for warnings).
+
+Brief text (e.g., “3 Routes Behind Schedule” or “Missed Pickup in District 4”).
+
+Optionally, a “Read More” link or an expand/collapse action to see more details.
+
+Styling:
+
+Cards should have a white background with a slight shadow to give depth.
+
+Consistent padding (16–20px) inside each card.
+
+Interactivity:
+
+Make cards clickable to navigate to detailed views or pop up more info.
+
+C. (Optional) Summary KPI Row:
+
+If desired, include a slim row of KPI cards just below the header for high-level metrics (e.g., Total Fuel Savings, Cost Savings, CO₂ Emissions Reduced).
+
+Size: Each KPI card approx. 200px wide by 100px high.
+
+Design: Minimal icons, bold numbers, and concise labels.
+
+This row is optional if you feel that the central trend chart and insight cards sufficiently capture high-level data.
+
+4. Data Integration & Interactivity
+Placeholder Data:
+
+Initially populate the trend chart with sample data so the interactive features (tooltips, zoom) are demonstrable.
+
+Use sample alerts in the insight cards to show how real-time notifications will appear.
+
+Real-Time Updates:
+
+Set up JavaScript hooks (or WebSocket connections if available later) to update the dashboard dynamically.
+
+Interactivity Testing:
+
+Ensure that hover effects on the trend chart display detailed information.
+
+Verify that clicking on an insight card either expands it or navigates to a more detailed view.
+
+5. Responsiveness & User Experience
+Responsive Design:
+
+Use CSS media queries to ensure that on smaller screens (e.g., tablets, mobiles) the left and right panels stack vertically.
+
+Maintain legibility and interactivity on touch devices.
+
+User Experience:
+
+Keep the design clean and uncluttered.
+
+Ensure that all interactive elements (charts, cards, buttons) have smooth transitions and clear hover/click feedback.
+
+Test the dashboard layout across different browsers for compatibility.
+
+6. Coding & Organization
+Code Structure:
+
+Organize your code with separate files for HTML, CSS, and JavaScript.
+
+Use comments liberally to explain sections and functions.
+
+If using a framework (React, Vue, etc.), break down components into reusable parts (e.g., HeaderComponent, TrendChartComponent, InsightCardComponent).
+
+Folder Structure Example:
+
+/index.html
+
+/css/styles.css
+
+/js/main.js
+
+/assets/ (for images and icons)
