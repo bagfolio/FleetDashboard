@@ -1,0 +1,269 @@
+Fleet Dashboard Product Requirements Document (PRD)
+1. Overview
+Product Name: Fleet Dashboard
+
+Purpose:
+The Fleet Dashboard is a cloud-based web application designed to help waste management companies and municipal waste services optimize their routing, track performance metrics, manage citizen engagement, and monitor sustainability initiatives (such as carbon emission reductions). The dashboard integrates data from existing telematics, historical route logs, external traffic/weather APIs, and citizen input to provide actionable insights in real time.
+
+Objective:
+
+Enable operators to view and adjust routes dynamically based on live conditions.
+
+Provide performance metrics to demonstrate savings in fuel, labor, and maintenance costs.
+
+Track operational data (e.g., route duration, stops, idling time) to optimize future scheduling.
+
+Incorporate citizen engagement data (e.g., timely waste disposal reports) to improve service predictability.
+
+Display carbon emissions data and savings, offering transparency and potential monetization through carbon credits.
+
+Target Audience:
+
+Waste Management Company (WMC) operations managers and dispatchers.
+
+Municipal waste service administrators.
+
+Sustainability officers focused on environmental impact and carbon reduction.
+
+2. Features & Functional Requirements
+2.1 Interactive Route Map
+Real-Time GPS Display:
+
+Display current locations of each truck on a dynamic map.
+
+Show planned routes vs. actual routes with visual indicators (e.g., color-coded paths for completed, active, or delayed segments).
+
+Route Details:
+
+Clickable routes that show route stops, estimated time-of-arrival (ETA), and distance metrics.
+
+Ability to view historical route data (past week/month) for trend analysis.
+
+2.2 Key Performance Indicators (KPIs) and Metrics
+Dashboard Metrics:
+
+Total Miles Driven vs. Optimized Miles.
+
+Fuel consumption and estimated fuel savings.
+
+Operational cost savings (labor, maintenance, etc.).
+
+Carbon emissions reduced (in metric tons) and corresponding carbon credit estimates.
+
+Data Visualization:
+
+Gauges, trend charts, and progress bars.
+
+Real-time updates on KPIs with drill-down options for detailed analysis.
+
+2.3 Operational Analytics and Reporting
+Historical Analytics:
+
+Weekly, monthly, and quarterly performance summaries.
+
+Reports comparing scheduled vs. actual performance.
+
+Alert System:
+
+Notifications for delays, unexpected route deviations, or unscheduled stops.
+
+Automated alerts for maintenance or performance thresholds (e.g., if a truck exceeds its idling time limit).
+
+2.4 Citizen Engagement Integration
+Engagement Metrics:
+
+Display citizen-reported issues (e.g., missed pickups, overflowing bins).
+
+Aggregated engagement scores (participation in recycling incentives, app-based reporting).
+
+Rewards & Incentives Data:
+
+Track and display data on incentive programs (points earned, redeemed, etc.).
+
+Integration with a citizen mobile app for real-time data input (optional).
+
+2.5 External Data Integration
+Traffic & Weather APIs:
+
+Integrate with Google Maps API or OpenRouteService for live traffic and route recalculation.
+
+Incorporate weather data to adjust route planning and forecast disruptions.
+
+Third-Party Telemetry:
+
+Import data from existing fleet management or telematics systems.
+
+API endpoints to pull vehicle telemetry, such as GPS coordinates, idle times, and engine status.
+
+2.6 Carbon Emission Tracking and Reporting
+Emission Calculations:
+
+Automatically calculate emissions based on miles driven and fuel efficiency.
+
+Convert saved miles/fuel into estimated CO₂ reductions.
+
+Carbon Credit Integration:
+
+Provide a summary view of potential carbon credits earned.
+
+Option to export or share carbon reduction data with regulatory bodies or carbon markets.
+
+2.7 User Management and Customization
+Role-Based Access:
+
+Different dashboards for operations managers, drivers, and administrators.
+
+Customization Options:
+
+Ability to customize visible KPIs, set alert thresholds, and configure reporting periods.
+
+Responsive design for use on desktop, tablet, and mobile devices.
+
+3. Non-Functional Requirements
+Performance:
+
+Real-time data updates with minimal latency (< 5 seconds).
+
+Scalable architecture to handle data from 50–100+ vehicles simultaneously.
+
+Usability:
+
+Intuitive, clean UI/UX that allows users to quickly grasp the state of operations.
+
+Accessibility standards compliance (WCAG 2.1) for a broad range of users.
+
+Security:
+
+Secure authentication and role-based authorization.
+
+Data encryption for both storage and transmission (HTTPS, TLS).
+
+Reliability & Availability:
+
+99.9% uptime for the dashboard service.
+
+Robust error-handling and fallback mechanisms for data integration failures.
+
+Maintainability:
+
+Modular codebase with clear documentation to enable rapid iteration and bug fixes.
+
+Integration with version control (e.g., Git) and continuous integration/deployment pipelines.
+
+4. User Stories
+Operations Manager:
+
+As an operations manager, I want to see an interactive map of all active routes so that I can monitor real-time progress and quickly identify any delays or deviations.
+
+As an operations manager, I want to view key performance metrics (fuel savings, miles driven, carbon reduction) so that I can report operational efficiency improvements to stakeholders.
+
+Dispatcher:
+
+As a dispatcher, I want to receive real-time alerts for route deviations or delays so that I can quickly reassign routes or notify drivers.
+
+As a dispatcher, I want historical route analytics to identify patterns and adjust future scheduling accordingly.
+
+Sustainability Officer:
+
+As a sustainability officer, I want to track carbon emissions and credits in real time so that I can validate our environmental impact and explore monetization via carbon markets.
+
+As a sustainability officer, I want a clear, exportable report of emission reductions over a given period to share with regulatory bodies.
+
+Citizen Engagement Coordinator:
+
+As a citizen engagement coordinator, I want to see aggregated data on resident interactions (reports of missed pickups, participation in incentive programs) so that I can measure the success of our outreach efforts.
+
+5. Wireframe & Mockup Considerations
+Main Dashboard Layout:
+
+Left Pane: Navigation menu (Route Map, KPIs, Reports, Alerts, Carbon, Settings).
+
+Center Pane: Large interactive route map with overlay options (e.g., traffic conditions, real-time GPS).
+
+Right Pane: Summary metrics and alerts.
+
+Footer/Top Bar: Global navigation (user profile, notifications, settings).
+
+Mobile Layout:
+
+Simplified view with a toggle between map view and KPI view.
+
+Easy-to-access menu for alerts and notifications.
+
+Visual Style:
+
+Clean, modern design with ample whitespace and intuitive iconography.
+
+Use of dynamic charts (line charts, gauges, bar graphs) to present trends and real-time data.
+
+Color coding to differentiate between statuses (e.g., green for optimal performance, red for alerts).
+
+6. Technical Stack (High-Level)
+Frontend:
+
+React.js (or Next.js for SSR capabilities)
+
+Map integration via Google Maps API/OpenRouteService
+
+Backend:
+
+Node.js with Express for API services
+
+Integration with third-party telematics APIs (Google, ORS, etc.)
+
+Real-time data handling (WebSockets for live updates)
+
+Data Storage:
+
+PostgreSQL or MongoDB for storing historical route and performance data
+
+Cloud storage (AWS S3 or equivalent) for logs and report exports
+
+Deployment:
+
+Hosted on Vercel or Replit’s deployment environment
+
+Continuous integration/continuous deployment (CI/CD) pipelines for fast iteration
+
+7. Acceptance Criteria
+Functionality:
+
+All key features (map, KPIs, reporting, alerts, citizen engagement data, carbon tracking) are implemented and integrated.
+
+Data feeds update in real time with minimal latency.
+
+Users can generate and export reports (PDF/CSV formats) covering historical data.
+
+Usability:
+
+User testing shows the interface is intuitive and meets user story needs.
+
+Responsive design works well across devices.
+
+Performance & Security:
+
+The dashboard meets the defined performance targets (latency, uptime).
+
+All sensitive data is encrypted, and user authentication is robust.
+
+8. Roadmap & Future Enhancements
+Phase 1 (0–3 months):
+
+MVP with interactive map, basic KPIs, and historical route reporting.
+
+Integration with primary telematics data (simulated if necessary for demo).
+
+Phase 2 (3–9 months):
+
+Real-time alerts and dynamic re-routing capabilities.
+
+Enhanced citizen engagement module with mobile app integration.
+
+Phase 3 (9–18 months):
+
+Advanced predictive analytics for dynamic scheduling.
+
+Carbon emission tracking with integrated marketplace options.
+
+Expanded reporting capabilities with export functionality and custom dashboards.
+
